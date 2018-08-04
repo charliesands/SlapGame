@@ -14,8 +14,9 @@ function reset() {
   gameStats.health = 1000
   gameStats.hits = 0
   gameStats.items = []
-  clickedPeds = 0;
-  clicked = 0;
+  clickedPeds = 0
+  clicked = 0
+  clickPad = 0;
 }
 
 
