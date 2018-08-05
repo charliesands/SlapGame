@@ -101,14 +101,6 @@ function update() {
   document.getElementById("hits").innerText = gameStats.hits.toString()
   document.getElementById("health").innerText = gameStats.health.toString()
   document.getElementById("target-name").innerText = gameStats.targetName
-  checkHealth()
-}
-
-function checkHealth() {
-  if (gameStats.health == 0) {
-    alert("You Win!")
-    reset()
-  }
 }
 
 update();
