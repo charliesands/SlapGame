@@ -10,6 +10,7 @@ let items = {
   peds: { name: "PED's", modifier: 25, description: "Performance Enhancing Drugs" },
   cheatCode: { name: "Cheat Code!", modifier: 250, description: "Cheaters always win" }
 }
+
 function reset() {
   gameStats.health = 1000
   gameStats.hits = 0
@@ -19,23 +20,30 @@ function reset() {
   clickPad = 0;
 }
 
-
-
 function headShot() {
   gameStats.health = gameStats.health -= 10 + addMods();
   gameStats.hits++
+  if (gameStats.health < 0) {
+    gameStats.health = 0;
+  }
   update()
 }
 
 function bodyShot() {
   gameStats.health = gameStats.health -= 15 + addMods();
   gameStats.hits++
+  if (gameStats.health < 0) {
+    gameStats.health = 0;
+  }
   update()
 }
 
 function upperCut() {
   gameStats.health = gameStats.health -= 30 + addMods();
   gameStats.hits++
+  if (gameStats.health < 0) {
+    gameStats.health = 0;
+  }
   update()
 }
 
@@ -49,8 +57,6 @@ function givePeds() {
     reset()
     update()
   }
-
-
   update()
 }
 
@@ -78,8 +84,6 @@ function giveCheatCode() {
     reset()
     update()
   }
-
-
   update()
 }
 
