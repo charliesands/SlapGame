@@ -8,7 +8,7 @@ let gameStats = {
 let items = {
   removePadding: { name: "Padding Removal", modifier: 10, description: "Remove padding from gloves" },
   peds: { name: "PED's", modifier: 25, description: "Performance Enhancing Drugs" },
-  cheatCode: { name: "Cheat Code!", modifier: 250, description: "Cheaters always win" }
+  cheatCode: { name: "Cheat Code!", modifier: 100, description: "Cheaters always win" }
 }
 
 function reset() {
@@ -17,7 +17,8 @@ function reset() {
   gameStats.items = []
   clickedPeds = 0
   clicked = 0
-  clickPad = 0;
+  clickPad = 0
+  update()
 }
 
 function headShot() {
@@ -97,9 +98,17 @@ function addMods() {
 }
 
 function update() {
-  document.getElementById("hits").innerText = gameStats.hits.toString();
-  document.getElementById("health").innerText = gameStats.health.toString();
-  document.getElementById("target-name").innerText = gameStats.targetName;
+  document.getElementById("hits").innerText = gameStats.hits.toString()
+  document.getElementById("health").innerText = gameStats.health.toString()
+  document.getElementById("target-name").innerText = gameStats.targetName
+  checkHealth()
+}
+
+function checkHealth() {
+  if (gameStats.health == 0) {
+    alert("You Win!")
+    reset()
+  }
 }
 
 update();
