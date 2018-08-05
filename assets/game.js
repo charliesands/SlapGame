@@ -28,6 +28,7 @@ function headShot() {
     gameStats.health = 0;
   }
   update()
+  checkHealth()
 }
 
 function bodyShot() {
@@ -37,6 +38,7 @@ function bodyShot() {
     gameStats.health = 0;
   }
   update()
+  checkHealth()
 }
 
 function upperCut() {
@@ -46,6 +48,7 @@ function upperCut() {
     gameStats.health = 0;
   }
   update()
+  checkHealth()
 }
 
 let clickedPeds = 0
@@ -63,11 +66,11 @@ function givePeds() {
 
 let clickPad = 0;
 function giveRemovePadding() {
-  if (clickPad++ < 20) {
+  if (clickPad++ < 1) {
     gameStats.items.push(items.removePadding)
   }
   else {
-    alert("Good job! Your hand is broken.")
+    alert("DQ'd! You Lose!")
     reset()
     update()
   }
@@ -103,5 +106,13 @@ function update() {
   document.getElementById("target-name").innerText = gameStats.targetName
 }
 
-update();
+function checkHealth() {
+  if (gameStats.health == 0) {
+    alert("You Win!")
+    update()
+    reset()
+  }
+}
+
+update()
 
