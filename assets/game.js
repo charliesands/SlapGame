@@ -6,7 +6,7 @@ let gameStats = {
 }
 
 let items = {
-  removePadding: { name: "Padding Removal", modifier: 10, description: "Remove padding from gloves" },
+  removePadding: { name: "Bite Ear", modifier: 10, description: "Bite ear" },
   peds: { name: "PED's", modifier: 25, description: "Performance Enhancing Drugs" },
   cheatCode: { name: "Cheat Code!", modifier: 100, description: "Cheaters always win" }
 }
@@ -23,31 +23,25 @@ function reset() {
 
 function headShot() {
   gameStats.health = gameStats.health -= 10 + addMods();
-  gameStats.hits++
   if (gameStats.health < 0) {
-    gameStats.health = 0;
+    gameStats.health = 0
   }
-  update()
   checkHealth()
 }
 
 function bodyShot() {
   gameStats.health = gameStats.health -= 15 + addMods();
-  gameStats.hits++
   if (gameStats.health < 0) {
     gameStats.health = 0;
   }
-  update()
   checkHealth()
 }
 
 function upperCut() {
   gameStats.health = gameStats.health -= 30 + addMods();
-  gameStats.hits++
   if (gameStats.health < 0) {
     gameStats.health = 0;
   }
-  update()
   checkHealth()
 }
 
@@ -57,7 +51,7 @@ function givePeds() {
     gameStats.items.push(items.peds);
   }
   else {
-    alert("Dude! You're dead!")
+    $('#pedModal').modal('toggle')
     reset()
     update()
   }
@@ -70,7 +64,7 @@ function giveRemovePadding() {
     gameStats.items.push(items.removePadding)
   }
   else {
-    alert("DQ'd! You Lose!")
+    $('#biteModal').modal('toggle')
     reset()
     update()
   }
@@ -84,7 +78,7 @@ function giveCheatCode() {
     gameStats.items.push(items.cheatCode);
   }
   else {
-    alert("Really? C'mon man. You lose!")
+    $('#cheatModal').modal('toggle')
     reset()
     update()
   }
@@ -107,11 +101,12 @@ function update() {
 }
 
 function checkHealth() {
+  update()
   if (gameStats.health == 0) {
-    alert("You Win!")
-    update()
-    reset()
+    $('#winModal').modal('toggle')
+    return
   }
+  gameStats.hits++
 }
 
 update()
